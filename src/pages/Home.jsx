@@ -1,7 +1,38 @@
+import { motion, useInView } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import ekta10 from "../assets/ekta/gallery (10).jpeg";
 import ekta32 from "../assets/ekta/gallery (32).jpg";
 import ekta24 from "../assets/ekta/gallery (24).jpeg";
+
+/* Counter Component - Starts when visible */
+const Counter = ({ target }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let start = 0;
+    const duration = 1500;
+    const increment = target / (duration / 20);
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 20);
+
+    return () => clearInterval(timer);
+  }, [isInView, target]);
+
+  return <span ref={ref}>{count}+</span>;
+};
 
 const Home = () => {
   return (
@@ -22,8 +53,7 @@ const Home = () => {
         </Link>
       </section>
 
-      {/* Our Initiatives Section */}
-      {/* Our Work Preview */}
+      {/* Work Preview */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto text-center mb-12">
           <h2 className="text-3xl font-bold text-blue-700">
@@ -35,23 +65,18 @@ const Home = () => {
         </div>
 
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
-          <img
-            src={ekta10}
-            alt="NGO Activity"
-            className="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
-          />
-
-          <img
-            src={ekta32}
-            alt="Food Distribution"
-            className="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
-          />
-
-          <img
-            src={ekta24}
-            alt="Media Coverage"
-            className="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
-          />
+          {[ekta10, ekta32, ekta24].map((img, index) => (
+            <div
+              key={index}
+              className="overflow-hidden rounded-xl shadow-lg group"
+            >
+              <img
+                src={img}
+                alt="NGO Activity"
+                className="w-full h-64 object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+          ))}
         </div>
 
         <div className="text-center mt-10">
@@ -132,29 +157,38 @@ const Home = () => {
       </section>
 
       {/* Impact Section */}
-      <section className="bg-blue-600 py-16 px-6 text-white text-center">
-        <h2 className="text-3xl font-bold mb-10">Our Impact</h2>
+      <section className="bg-blue-600 py-20 px-6 text-white text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold mb-12"
+        >
+          Our Impact
+        </motion.h2>
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-4xl font-bold">500+</h3>
-            <p className="mt-2">Children Supported</p>
-          </div>
-
-          <div>
-            <h3 className="text-4xl font-bold">1000+</h3>
-            <p className="mt-2">Meals Distributed</p>
-          </div>
-
-          <div>
-            <h3 className="text-4xl font-bold">50+</h3>
-            <p className="mt-2">Health Camps</p>
-          </div>
-
-          <div>
-            <h3 className="text-4xl font-bold">200+</h3>
-            <p className="mt-2">Volunteers</p>
-          </div>
+          {[
+            { value: 500, label: "Children Supported" },
+            { value: 1000, label: "Meals Distributed" },
+            { value: 50, label: "Health Camps" },
+            { value: 200, label: "Volunteers" },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-xl shadow-lg hover:scale-105 transition"
+            >
+              <h3 className="text-4xl font-bold">
+                <Counter target={item.value} />
+              </h3>
+              <p className="mt-3">{item.label}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
     </div>
