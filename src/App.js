@@ -1,12 +1,15 @@
 import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>Dev : Sohail Saudagar</p>
-      </header>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+
+      <main className="flex-grow pt-24 px-6">{/* Your page content */}</main>
+
+      <Footer />
     </div>
   );
 }
