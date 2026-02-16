@@ -10,11 +10,15 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
         {/* Logo + Name */}
         <div className="flex items-center gap-3">
-          <img
-            src={logo}
-            alt="Logo"
-            className="h-14 w-14 object-contain flex-shrink-0"
-          />
+          <Link to="/">
+            {" "}
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-14 w-14 object-contain flex-shrink-0"
+            />
+          </Link>
+
           <h1 className="text-lg md:text-xl font-bold text-blue-600 leading-tight">
             Ekata Bahuudeshiya Seva Bhavi Sanstha
           </h1>
@@ -24,6 +28,9 @@ const Header = () => {
         <nav className="hidden md:flex space-x-8 font-medium">
           <Link to="/" className="hover:text-blue-600 transition">
             Home
+          </Link>
+          <Link to="/gallery" className="hover:text-blue-600 transition">
+            Gallery
           </Link>
           <Link to="/about" className="hover:text-blue-600 transition">
             About
@@ -47,6 +54,13 @@ const Header = () => {
         <div className="md:hidden bg-gray-50 px-6 py-4 space-y-4 shadow">
           <Link to="/" onClick={() => setIsOpen(false)} className="block">
             Home
+          </Link>
+          <Link
+            to="/gallery"
+            onClick={() => setIsOpen(false)}
+            className="block"
+          >
+            Gallery
           </Link>
           <Link to="/about" onClick={() => setIsOpen(false)} className="block">
             About

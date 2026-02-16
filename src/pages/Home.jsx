@@ -1,3 +1,8 @@
+import { Link } from "react-router-dom";
+import ekta10 from "../assets/ekta/gallery (10).jpeg";
+import ekta32 from "../assets/ekta/gallery (32).jpg";
+import ekta24 from "../assets/ekta/gallery (24).jpeg";
+
 const Home = () => {
   return (
     <div className="mt-20">
@@ -10,12 +15,55 @@ const Home = () => {
           Ekata Bahuudeshiya Seva Bhavi Sanstha works towards education,
           healthcare, and social welfare to build a stronger and united society.
         </p>
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-          Support Our Mission
-        </button>
+        <Link to="/contact">
+          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+            Support Our Mission
+          </button>
+        </Link>
       </section>
 
       {/* Our Initiatives Section */}
+      {/* Our Work Preview */}
+      <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto text-center mb-12">
+          <h2 className="text-3xl font-bold text-blue-700">
+            Our Work in Action
+          </h2>
+          <p className="text-gray-600 mt-4">
+            A glimpse of our activities and media coverage.
+          </p>
+        </div>
+
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+          <img
+            src={ekta10}
+            alt="NGO Activity"
+            className="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
+          />
+
+          <img
+            src={ekta32}
+            alt="Food Distribution"
+            className="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
+          />
+
+          <img
+            src={ekta24}
+            alt="Media Coverage"
+            className="w-full h-64 object-cover rounded-xl shadow-lg hover:scale-105 transition duration-300"
+          />
+        </div>
+
+        <div className="text-center mt-10">
+          <Link
+            to="/gallery"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+          >
+            View More
+          </Link>
+        </div>
+      </section>
+
       <section className="py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto text-center mb-12">
           <h2 className="text-3xl font-bold text-blue-700">
