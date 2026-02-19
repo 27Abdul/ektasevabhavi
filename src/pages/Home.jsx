@@ -36,23 +36,7 @@ const Counter = ({ target }) => {
 
 const Home = () => {
   return (
-    <div className="mt-20">
-      {/* Hero Section */}
-      <section className="bg-blue-50 py-20 px-6 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-6">
-          Empowering Communities, Transforming Lives
-        </h1>
-        <p className="max-w-3xl mx-auto text-gray-600 mb-8">
-          Ekata Bahuudeshiya Seva Bhavi Sanstha works towards education,
-          healthcare, and social welfare to build a stronger and united society.
-        </p>
-        <Link to="/contact">
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
-            Support Our Mission
-          </button>
-        </Link>
-      </section>
-
+    <div className="">
       {/* Work Preview */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto text-center mb-12">
@@ -87,6 +71,21 @@ const Home = () => {
             View More
           </Link>
         </div>
+      </section>
+      {/* Hero Section */}
+      <section className="bg-blue-50 py-20 px-6 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold text-blue-700 mb-6">
+          Empowering Communities, Transforming Lives
+        </h1>
+        <p className="max-w-3xl mx-auto text-gray-600 mb-8">
+          Ekata Bahuudeshiya Seva Bhavi Sanstha works towards education,
+          healthcare, and social welfare to build a stronger and united society.
+        </p>
+        <Link to="/contact">
+          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+            Support Our Mission
+          </button>
+        </Link>
       </section>
 
       <section className="py-20 px-6 bg-white">
